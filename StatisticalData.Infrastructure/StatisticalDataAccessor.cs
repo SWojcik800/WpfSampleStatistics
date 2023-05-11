@@ -25,12 +25,35 @@ namespace StatisticalData.Infrastructure
             return _areaItems.ToList();
         }
 
+        public long ItemsCount()
+            => _areaItems.Count;
+
         public async Task Update(AreaItem itemToUpdate)
         {
-            var item = _areaItems.First(x => x.Id == itemToUpdate.Id);
+            var item = _areaItems.FirstOrDefault(x => x.Id == itemToUpdate.Id);
+
             var itemIdx = _areaItems.IndexOf(item);
 
             _areaItems[itemIdx] = item;
+            await Task.CompletedTask;
+        }
+
+        public async Task Delete(List<long> ids)
+        {
+            foreach (var id in ids)
+            {
+                var item = _areaItems.FirstOrDefault(x => x.Id == id);
+
+                if(item is not null)
+                    _areaItems.Remove(item);
+
+            }
+        }
+
+        public async Task Create(AreaItem item)
+        {
+            _areaItems.Add(item);
+            await Task.CompletedTask;
         }
     }
 }

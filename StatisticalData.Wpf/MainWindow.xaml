@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StatisticalData.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="600" Width="1000">
     <DockPanel>
-        <DataGrid x:Name="StatisticsDataGrid" x:FieldModifier="public" AutoGenerateColumns="True" ></DataGrid>
+        <DataGrid x:Name="StatisticsDataGrid" x:FieldModifier="public"
+                  AutoGenerateColumns="True" CanUserAddRows="True" 
+                  CanUserDeleteRows="True" CanUserSortColumns="True"
+                  RowEditEnding="StatisticsDataGrid_RowEditEnding"
+                  AddingNewItem="StatisticsDataGrid_AddingNewItem"
+                  PreviewKeyDown="StatisticsDataGrid_PreviewKeyDown">
+        </DataGrid>
+        
     </DockPanel>
 </Window>
