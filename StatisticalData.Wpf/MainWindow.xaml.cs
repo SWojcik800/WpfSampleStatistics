@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StatisticalData.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,23 @@ namespace StatisticalData.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IStatisticalDataAccessor _statisticalDataAccessor;
+
+        public MainWindow(IStatisticalDataAccessor statisticalDataAccessor)
         {
+            _statisticalDataAccessor = statisticalDataAccessor;
             InitializeComponent();
+            InitializeGridData();
+
+
+        }
+
+        protected async Task InitializeGridData()
+        {
+            var items = await _statisticalDataAccessor.GetAll();
+
+            StatisticsDataGrid.ItemsSource = items;
+            
         }
     }
 }

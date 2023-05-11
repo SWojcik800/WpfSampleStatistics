@@ -24,5 +24,13 @@ namespace StatisticalData.Infrastructure
 
             return _areaItems.ToList();
         }
+
+        public async Task Update(AreaItem itemToUpdate)
+        {
+            var item = _areaItems.First(x => x.Id == itemToUpdate.Id);
+            var itemIdx = _areaItems.IndexOf(item);
+
+            _areaItems[itemIdx] = item;
+        }
     }
 }

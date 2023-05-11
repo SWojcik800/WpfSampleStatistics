@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using StatisticalData.Infrastructure;
 using System;
 using System.Windows;
 
@@ -15,6 +16,9 @@ namespace StatisticalData.Wpf
         {
             ServiceCollection services = new ServiceCollection();
             
+            services.AddScoped<MainWindow>();
+            services.AddSingleton<IStatisticalDataAccessor, StatisticalDataAccessor>(); 
+
             _serviceProvider = services.BuildServiceProvider();
         }
 
