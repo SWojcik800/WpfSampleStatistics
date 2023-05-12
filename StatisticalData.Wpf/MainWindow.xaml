@@ -5,15 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StatisticalData.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
-    <DockPanel>
-        <DataGrid x:Name="StatisticsDataGrid" x:FieldModifier="public"
+        Title="MainWindow" WindowState="Maximized" Height="1000" Width="1400">
+    
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="DisabledButtonStyle">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="Cursor" Value="Arrow" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray" />
+                    <Setter Property="Background" Value="LightGray" />
+                    <Setter Property="BorderBrush" Value="DarkGray" />
+                    <Setter Property="Cursor" Value="Arrow" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+
+            <RowDefinition Height="50"  />
+
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0"
+                  x:Name="StatisticsDataGrid" x:FieldModifier="public"
                   AutoGenerateColumns="True" CanUserAddRows="True" 
                   CanUserDeleteRows="True" CanUserSortColumns="True"
                   RowEditEnding="StatisticsDataGrid_RowEditEnding"
-                  AddingNewItem="StatisticsDataGrid_AddingNewItem"
-                  PreviewKeyDown="StatisticsDataGrid_PreviewKeyDown">
+                  AddingNewItem="StatisticsDataGrid_AddingNewItem"                  
+                  PreviewKeyDown="StatisticsDataGrid_PreviewKeyDown"
+                  LoadingRow="StatisticsDataGrid_LoadingRow"
+                               
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.503,0.486"
+                  >
         </DataGrid>
-        
-    </DockPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button x:Name="PreviousBtn" Content="Previous" Click="PreviousBtn_Click" DockPanel.Dock="Bottom" Height="25" Width="111"/>
+            <Button x:Name="NextBtn" Content="Next" Click="NextBtn_Click" Height="25" Width="111"></Button>
+            <Label x:Name="TotalCountLabel" Content="{Binding _totalItemsCount}" Height="28" Width="100"/>
+            <Label x:Name="PageNumberLabel" Content="Page number: 1" Height="28" Width="100"/>
+        </StackPanel>
+
+
+    </Grid>
+
 </Window>

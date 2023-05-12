@@ -50,10 +50,9 @@ namespace StatisticalData.Infrastructure
             }
         }
 
-        public async Task Create(AreaItem item)
+        public void Create(AreaItem item)
         {
             _areaItems.Add(item);
-            await Task.CompletedTask;
         }
     }
 }
