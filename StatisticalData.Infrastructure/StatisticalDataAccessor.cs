@@ -54,5 +54,14 @@ namespace StatisticalData.Infrastructure
         {
             _areaItems.Add(item);
         }
+
+        public long GetMaxId()
+        {
+            if (!_areaItems.Any())
+                return 1;
+
+            var maxId = _areaItems.Max(x => x.Id);
+            return maxId+1;
+        }
     }
 }

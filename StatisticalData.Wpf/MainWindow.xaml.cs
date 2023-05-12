@@ -50,7 +50,7 @@ namespace StatisticalData.Wpf
         protected async Task InitializeGridData()
         {
             
-            await RefreshGridItemsAsync();           
+            await RefreshGridItemsAsync();       
         }
 
         #region Loading data
@@ -117,14 +117,19 @@ namespace StatisticalData.Wpf
 
         private void StatisticsDataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
         {
-            var newItem = (AreaItem)e.NewItem;
-
-            if (newItem is not null)
-                
+            var maxId = _statisticalDataAccessor.GetMaxId();
+            var newItem = new AreaItem()
             {
-                _statisticalDataAccessor.Create(newItem);
-                RefreshGridItemsAsync();
-            }            
+                Id = maxId,
+                Name = "Test",
+                ParentId = 0,
+                LevelId = 1,
+                LevelName = "Dziedzina",
+                CanChange = true,                                                
+            };   
+            e.NewItem = newItem;
+            _statisticalDataAccessor.Create(newItem);
+            //RefreshGridItemsAsync();                        
         }
 
         private void StatisticsDataGrid_PreviewKeyDown(object sender, KeyEventArgs e)

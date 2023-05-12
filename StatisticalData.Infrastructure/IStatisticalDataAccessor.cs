@@ -7,6 +7,7 @@ namespace StatisticalData.Infrastructure
         void Create(AreaItem item);
         Task Delete(List<long> ids);
         Task<List<AreaItem>> GetAll();
+        long GetMaxId();
         long ItemsCount();
         Task Update(AreaItem itemToUpdate);
     }

@@ -22,6 +22,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
+        
     </Window.Resources>
     
     <Grid>
@@ -39,7 +41,7 @@
                   AddingNewItem="StatisticsDataGrid_AddingNewItem"                  
                   PreviewKeyDown="StatisticsDataGrid_PreviewKeyDown"
                   LoadingRow="StatisticsDataGrid_LoadingRow"
-                               
+                  ColumnWidth="*"            
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.503,0.486"
                   >
         </DataGrid>
